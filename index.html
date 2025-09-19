@@ -12,10 +12,10 @@
     <!-- Chosen Palette: Warm Neutrals with DHL-inspired Accent -->
     <!-- Application Structure Plan: A single-page, thematic portfolio designed for recruiter engagement. The structure flows from a high-level summary (Hero) to an interactive exploration of capabilities (Skills Dashboard), then showcases career progression (Experience Timeline), and finally highlights the most relevant evidence of suitability (Project Spotlight). This non-linear, scannable structure, supported by a sticky navigation, allows users to quickly access the most relevant information, prioritizing impact and usability over a traditional chronological format. -->
     <!-- Visualization & Content Choices: 
-        - Hero: Goal=Inform, Method=Text, Interaction=None. Justification: Provides an immediate, concise professional identity.
+        - Hero: Goal=Inform, Method=Text & Image, Interaction=None. Justification: Provides an immediate, concise professional identity with a personal touch.
         - Core Competencies: Goal=Organize/Compare, Viz=Bar Chart, Interaction=Filtering. Justification: Visually quantifies skills, making them easily comparable and digestible. Library: Chart.js (Canvas).
         - Experience: Goal=Show Change, Method=Interactive Timeline, Interaction=Click-to-expand. Justification: Presents career history in a clean, engaging format that reduces initial clutter. Method: HTML/CSS/JS.
-        - Projects: Goal=Inform/Wow, Method=Cards & HTML/CSS Diagram, Interaction=Highlighting. Justification: The diagram makes the complex thesis instantly understandable and directly connects Haya's work to DHL's innovation focus.
+        - Projects: Goal=Inform/Wow, Method=Cards & HTML/CSS Diagram, Interaction=Highlighting & Modal Pop-up. Justification: The diagram makes the complex thesis instantly understandable and directly connects Haya's work to DHL's innovation focus.
         - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
@@ -50,6 +50,19 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
+        .modal {
+            transition: opacity 0.3s ease;
+        }
+        .view-link {
+            cursor: pointer;
+            color: #D4A017;
+            font-weight: 500;
+            text-decoration: none;
+            transition: text-decoration 0.2s ease-in-out;
+        }
+        .view-link:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -81,15 +94,22 @@
 
     <main class="container mx-auto px-6 py-12">
 
-        <section id="summary" class="min-h-[60vh] flex flex-col justify-center items-center text-center">
-            <h1 class="text-4xl md:text-6xl font-bold text-gray-800 leading-tight">Haya B. Alastal</h1>
-            <h2 class="mt-4 text-2xl md:text-3xl font-medium text-amber-600">Associate Project Manager &amp; Supply Chain and Logistics Specialist</h2>
-            <p class="mt-8 max-w-3xl text-lg text-gray-600">
-                A results-driven professional with a Master's degree in Engineering Systems Management, specializing in optimizing supply chains through data analysis, process improvement, and innovative technologies. Proven ability to lead complex, cross-border projects from concept to completion, delivering efficiency and value in global logistics environments.
-            </p>
-            <div class="mt-8 flex flex-wrap justify-center gap-4 text-sm">
-                <span class="bg-gray-200 text-gray-800 px-4 py-2 rounded-full">Haya.b.alastal@gmail.com</span>
-                <a href="https://www.linkedin.com/in/haya-alastal-6079651a0/" target="_blank" class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-colors">LinkedIn Profile</a>
+        <section id="summary" class="min-h-[80vh] flex items-center">
+            <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                <div class="md:col-span-1 flex justify-center">
+                    <img src="profile.jpg" alt="Haya Alastal" class="w-48 h-48 md:w-60 md:h-60 rounded-full object-cover shadow-xl border-4 border-white">
+                </div>
+                <div class="md:col-span-2 text-center md:text-left">
+                    <h1 class="text-4xl md:text-6xl font-bold text-gray-800 leading-tight">Haya B. Alastal</h1>
+                    <h2 class="mt-4 text-2xl md:text-3xl font-medium text-amber-600">Associate Project Manager &amp; Supply Chain and Logistics Specialist</h2>
+                    <p class="mt-6 max-w-2xl text-lg text-gray-600 mx-auto md:mx-0">
+                        A results-driven professional specializing in optimizing supply chains through data analysis, process improvement, and innovative technologies. Proven ability to lead complex, cross-border projects from concept to completion.
+                    </p>
+                    <div class="mt-8 flex flex-wrap justify-center md:justify-start gap-4 text-sm">
+                        <span class="bg-gray-200 text-gray-800 px-4 py-2 rounded-full">Haya.b.alastal@gmail.com</span>
+                        <a href="https://www.linkedin.com/in/haya-alastal-6079651a0/" target="_blank" class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-colors">LinkedIn Profile</a>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -197,21 +217,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="bg-white p-6 rounded-xl shadow-lg card-hover col-span-1 md:col-span-2 lg:col-span-3">
                     <h4 class="text-xl font-semibold text-amber-700">Master's Thesis: Quality & Pricing Model for Perishables</h4>
-                    <p class="mt-2 text-gray-600">This research developed a machine learning algorithm using smart labels; a technology identified via the DHL's Trend Radar to dynamically link the quality degradation of perishable foods to pricing. The model is designed to reduce waste, ensure quality, and enhance customer satisfaction in the cold chain.</p>
-                    <div class="mt-4 bg-gray-50 p-4 rounded-lg">
-                        <h5 class="font-semibold text-center mb-4 text-gray-700">Conceptual Flow</h5>
-                        <div class="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0 sm:space-x-4 text-center text-sm">
-                            <div class="flex items-center flex-col sm:flex-row gap-2">
-                                <div class="bg-blue-100 text-blue-800 rounded-lg p-3">Smart Label <br/>(Real-time Data)</div>
-                                <div class="font-bold text-gray-400 text-2xl transform rotate-90 sm:rotate-0">&rarr;</div>
-                            </div>
-                            <div class="flex items-center flex-col sm:flex-row gap-2">
-                                <div class="bg-green-100 text-green-800 rounded-lg p-3">ML Algorithm <br/>(Quality Analysis)</div>
-                                <div class="font-bold text-gray-400 text-2xl transform rotate-90 sm:rotate-0">&rarr;</div>
-                            </div>
-                             <div class="bg-purple-100 text-purple-800 rounded-lg p-3">Dynamic Pricing <br/>(Reduced Waste)</div>
-                        </div>
-                    </div>
+                    <p class="mt-2 text-gray-600">This research developed a machine learning algorithm using smart labels; a technology identified via the DHL's Trend Radar to dynamically link the quality degradation of perishable foods to pricing. The model is designed to reduce waste, ensure quality, and enhance customer satisfaction in the cold chain. <a onclick="openModal('poster.jpg')" class="view-link">[View Poster]</a></p>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
                     <h4 class="text-xl font-semibold text-gray-800">Blockchain in Logistics</h4>
@@ -225,10 +231,6 @@
                     <h4 class="text-xl font-semibold text-gray-800">Autonomous Beach Cleaning Robot</h4>
                     <p class="mt-2 text-gray-600">Award-winning capstone project for the design and fabrication of an autonomous robot for beach cleaning, recognized at the Dtec Annual Innovation ceremony.</p>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
-                    <h4 class="text-xl font-semibold text-gray-800">Blockchain in Scheduling</h4>
-                    <p class="mt-2 text-gray-600">Conducted a comprehensive review of current trends and future directions for integrating blockchain technology into scheduling systems to enhance efficiency.</p>
-                </div>
             </div>
         </section>
 
@@ -239,13 +241,13 @@
                     <h4 class="text-xl font-semibold text-gray-800">MSc. in Engineering Systems Management</h4>
                     <p class="text-amber-600 font-medium">American University of Sharjah (AUS)</p>
                     <p class="mt-2 text-gray-600">GPA: 3.95/4.0</p>
-                    <p class="text-sm text-gray-500">Relevant Courses: Logistics, Procurement, Project Management.</p>
+                    <p class="mt-2"><a onclick="openModal('masters.jpg')" class="view-link">[View Certificate]</a></p>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-lg">
                     <h4 class="text-xl font-semibold text-gray-800">BSc. in Industrial Engineering</h4>
                     <p class="text-amber-600 font-medium">Rochester Institute of Technology (RIT)</p>
                     <p class="mt-2 text-gray-600">GPA: 3.95/4.0</p>
-                    <p class="text-sm text-gray-500">Relevant Courses: Supply Chain Management, Facilities Planning.</p>
+                    <p class="mt-2"><a onclick="openModal('bachelors.jpg')" class="view-link">[View Certificate]</a></p>
                 </div>
                  <div class="bg-white p-6 rounded-xl shadow-lg md:col-span-2">
                     <h4 class="text-xl font-semibold text-gray-800 text-center">Certifications & Awards</h4>
@@ -282,6 +284,15 @@
             <p>&copy; 2025 Haya Alastal. This interactive CV was created to showcase my qualifications and growth journey.</p>
         </div>
     </footer>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 hidden opacity-0">
+        <div class="bg-white p-2 rounded-lg shadow-2xl max-w-4xl max-h-[90vh] w-full relative">
+            <button id="closeModal" class="absolute -top-3 -right-3 bg-white rounded-full w-8 h-8 flex items-center justify-center text-2xl font-bold text-gray-700 hover:text-red-500 transition-colors">&times;</button>
+            <img id="modalImage" src="" alt="Certificate view" class="w-full h-full object-contain max-h-[calc(90vh-1rem)]">
+        </div>
+    </div>
+
 
     <script>
         const menuBtn = document.getElementById('menu-btn');
@@ -416,6 +427,28 @@
             });
         });
 
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const closeModalBtn = document.getElementById('closeModal');
+
+        function openModal(src) {
+            modalImg.src = src;
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.remove('opacity-0'), 10);
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            setTimeout(() => modal.classList.add('hidden'), 300);
+        }
+
+        closeModalBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
         document.addEventListener('DOMContentLoaded', () => {
             createChart(skillsData);
             document.querySelector('.nav-link[href="#summary"]').classList.add('active');
@@ -424,7 +457,4 @@
     </script>
 </body>
 </html>
-
-
-
 
