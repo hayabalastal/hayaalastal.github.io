@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haya Alastal | Associate Project Manager & Supply Chain Specialist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals with DHL-inspired Accent -->
+    <!-- Application Structure Plan: A single-page, thematic portfolio designed for recruiter engagement. The structure flows from a high-level summary (Hero) to an interactive exploration of capabilities (Skills Dashboard), then showcases career progression (Experience Timeline), and finally highlights the most relevant evidence of suitability (Project Spotlight). This non-linear, scannable structure, supported by a sticky navigation, allows users to quickly access the most relevant information, prioritizing impact and usability over a traditional chronological format. -->
+    <!-- Visualization & Content Choices:
+        - Hero: Goal=Inform, Method=Text, Interaction=None. Justification: Provides an immediate, concise professional identity.
+        - Core Competencies: Goal=Organize/Compare, Viz=Bar Chart, Interaction=Filtering. Justification: Visually quantifies skills, making them easily comparable and digestible. Library: Chart.js (Canvas).
+        - Experience: Goal=Show Change, Method=Interactive Timeline, Interaction=Click-to-expand. Justification: Presents career history in a clean, engaging format that reduces initial clutter. Method: HTML/CSS/JS.
+        - Projects: Goal=Inform/Wow, Method=Cards & HTML/CSS Diagram, Interaction=Highlighting. Justification: The diagram makes the complex thesis instantly understandable and directly connects Haya's work to DHL's innovation focus.
+        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F7F4;
+            color: #333333;
+        }
+        .nav-link {
+            transition: color 0.3s ease, border-bottom-color 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #D4A017;
+            border-bottom-color: #D4A017;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -31px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #D4A017;
+            border: 2px solid #F8F7F4;
+            z-index: 10;
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold text-gray-800">HAYA ALASTAL</div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#summary" class="nav-link font-medium pb-1">Summary</a>
+                <a href="#skills" class="nav-link font-medium pb-1">Skills</a>
+                <a href="#experience" class="nav-link font-medium pb-1">Experience</a>
+                <a href="#projects" class="nav-link font-medium pb-1">Projects</a>
+                <a href="#education" class="nav-link font-medium pb-1">Education</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-gray-800 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 flex-col space-y-2">
+            <a href="#summary" class="block py-2 text-center nav-link">Summary</a>
+            <a href="#skills" class="block py-2 text-center nav-link">Skills</a>
+            <a href="#experience" class="block py-2 text-center nav-link">Experience</a>
+            <a href="#projects" class="block py-2 text-center nav-link">Projects</a>
+            <a href="#education" class="block py-2 text-center nav-link">Education</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <section id="summary" class="min-h-[60vh] flex flex-col justify-center items-center text-center">
+            <h1 class="text-4xl md:text-6xl font-bold text-gray-800 leading-tight">Haya B. Alastal</h1>
+            <h2 class="mt-4 text-2xl md:text-3xl font-medium text-amber-600">Associate Project Manager &amp; Supply Chain and Logistics Specialist</h2>
+            <p class="mt-8 max-w-3xl text-lg text-gray-600">
+                A results-driven professional with a Master's degree in Engineering Systems Management, specializing in optimizing supply chains through data analysis, process improvement, and innovative technologies. Proven ability to lead complex, cross-border projects from concept to completion, delivering efficiency and value in global logistics environments.
+            </p>
+            <div class="mt-8 flex flex-wrap justify-center gap-4 text-sm">
+                <span class="bg-gray-200 text-gray-800 px-4 py-2 rounded-full">+971 52 537 1710</span>
+                <span class="bg-gray-200 text-gray-800 px-4 py-2 rounded-full">Haya.b.alastal@gmail.com</span>
+                <a href="https://www.linkedin.com/in/haya-alastal-6079651a0/" target="_blank" class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-colors">LinkedIn Profile</a>
+            </div>
+        </section>
+
+        <section id="skills" class="py-20">
+            <h3 class="text-3xl font-bold text-center mb-4">Core Competencies</h3>
+            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">
+                This section provides a dynamic overview of my key skill areas. The chart below visualizes the breadth of my expertise across supply chain logistics, project management, and technical domains. Use the buttons to filter the chart and explore the specific skills that define my professional capabilities.
+            </p>
+            <div class="flex justify-center flex-wrap gap-2 mb-8">
+                <button class="skill-filter-btn active bg-amber-500 text-white px-4 py-2 rounded-full" data-category="all">All Skills</button>
+                <button class="skill-filter-btn bg-gray-200 text-gray-800 px-4 py-2 rounded-full" data-category="logistics">Supply Chain & Logistics</button>
+                <button class="skill-filter-btn bg-gray-200 text-gray-800 px-4 py-2 rounded-full" data-category="pm">Project Management</button>
+                <button class="skill-filter-btn bg-gray-200 text-gray-800 px-4 py-2 rounded-full" data-category="tech">Technical & Analytical</button>
+            </div>
+            <div class="bg-white p-4 sm:p-8 rounded-xl shadow-lg">
+                <div class="chart-container relative h-96 max-h-[400px] w-full max-w-4xl mx-auto">
+                    <canvas id="skillsChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="py-20">
+            <h3 class="text-3xl font-bold text-center mb-4">Professional Experience</h3>
+            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-16">
+                My career path demonstrates a consistent focus on improving systems, managing complex projects, and driving operational excellence. The interactive timeline below outlines my key roles and responsibilities. Click on each position to expand and view my specific accomplishments and contributions.
+            </p>
+            <div class="relative max-w-2xl mx-auto border-l-2 border-gray-200 pl-8">
+                <div class="timeline-item mb-12">
+                    <div class="cursor-pointer" onclick="toggleDetails('exp1')">
+                        <h4 class="text-xl font-semibold text-gray-800">Associate Project Manager, Platform Delivery</h4>
+                        <p class="text-amber-600 font-medium">Nexus Solutions | Dubai, UAE</p>
+                        <p class="text-sm text-gray-500">April 2024 – Present</p>
+                    </div>
+                    <div id="exp1" class="hidden mt-4 pl-4 border-l-2 border-amber-200">
+                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li>Structured the company’s first Jira Service Management system to streamline support, track SLAs, and manage change requests.</li>
+                            <li>Transformed project delivery with a standardized end-to-end approach, complete with tailored documentation and templates.</li>
+                            <li>Drove the platform delivery lifecycle for 6 international clients (each valued at €25K), from scoping to post-go-live support.</li>
+                            <li>Played a consultative role in strategic decisions, supporting leadership in roadmaps, technical feasibility, and scalability.</li>
+                            <li>Coordinated cross-border teams (UAE, UK, Turkey, Malta, Germany, Bulgaria) via daily standups to manage blockers and align on timelines.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item mb-12">
+                    <div class="cursor-pointer" onclick="toggleDetails('exp_new')">
+                        <h4 class="text-xl font-semibold text-gray-800">Graduate Teacher and Research Assistant</h4>
+                        <p class="text-amber-600 font-medium">American University of Sharjah (AUS) | Sharjah, UAE</p>
+                        <p class="text-sm text-gray-500">January 2023 – January 2024</p>
+                    </div>
+                    <div id="exp_new" class="hidden mt-4 pl-4 border-l-2 border-amber-200">
+                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li>Prepared and organized industrial engineering bootcamps, open days, and competitions in collaboration with department heads and faculty.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item mb-12">
+                    <div class="cursor-pointer" onclick="toggleDetails('exp_new_2')">
+                        <h4 class="text-xl font-semibold text-gray-800">Junior Researcher in Quality Control</h4>
+                        <p class="text-amber-600 font-medium">Rochester Institute of Technology (RIT) | Dubai, UAE</p>
+                        <p class="text-sm text-gray-500">May 2022 – January 2024</p>
+                    </div>
+                    <div id="exp_new_2" class="hidden mt-4 pl-4 border-l-2 border-amber-200">
+                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li>Created a conceptual framework to be adopted by new academies for optimal quality achievement.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item mb-12">
+                     <div class="cursor-pointer" onclick="toggleDetails('exp3')">
+                        <h4 class="text-xl font-semibold text-gray-800">Consulting Project Manager</h4>
+                        <p class="text-amber-600 font-medium">Rochester Institute of Technology (RIT) | Dubai, UAE</p>
+                        <p class="text-sm text-gray-500">May 2020 – September 2021</p>
+                    </div>
+                    <div id="exp3" class="hidden mt-4 pl-4 border-l-2 border-amber-200">
+                         <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li>Led cross-functional teams to solve complex business challenges for clients.</li>
+                            <li>Conducted market research and risk analysis for a major healthcare client’s supply chain continuity.</li>
+                            <li>Fostered strong client partnerships through effective communication and problem-solving.</li>
+                            <li>Collaborated with key technology partners including Dubai Future Labs, Fractal Systems, and CMC Hospital.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                     <div class="cursor-pointer" onclick="toggleDetails('exp2')">
+                        <h4 class="text-xl font-semibold text-gray-800">Sustainability and Quality Control Engineer</h4>
+                        <p class="text-amber-600 font-medium">Ajman Free Zone (AFZ) | Ajman, UAE</p>
+                        <p class="text-sm text-gray-500">September 2020 – January 2021</p>
+                    </div>
+                    <div id="exp2" class="hidden mt-4 pl-4 border-l-2 border-amber-200">
+                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li>Optimized warehouse and material management with sustainable supply chain practices.</li>
+                            <li>Introduced new systems for energy and water rationalization in AFZ facilities.</li>
+                            <li>Evaluated and managed contracts for future sustainability projects in logistics infrastructure.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+       
+        <section id="projects" class="py-20">
+            <h3 class="text-3xl font-bold text-center mb-4">Academic & Research Projects</h3>
+            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">
+                My academic research bridges theory and practice, focusing on applying emerging technologies to solve real-world logistics challenges. This section highlights key projects, including my Master's thesis which was inspired by DHL's own innovation research and directly addresses critical issues in the cold chain.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover col-span-1 md:col-span-2 lg:col-span-3">
+                    <h4 class="text-xl font-semibold text-amber-700">Master's Thesis: Quality & Pricing Model for Perishables</h4>
+                    <p class="mt-2 text-gray-600">This research developed a machine learning algorithm using smart labels—a technology identified via the **DHL Trend Radar**—to dynamically link the quality degradation of perishable foods to pricing. The model is designed to reduce waste, ensure quality, and enhance customer satisfaction in the cold chain.</p>
+                    <div class="mt-4 bg-gray-50 p-4 rounded-lg">
+                        <h5 class="font-semibold text-center mb-4 text-gray-700">Conceptual Flow</h5>
+                        <div class="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0 sm:space-x-4 text-center text-sm">
+                            <div class="flex items-center flex-col sm:flex-row gap-2">
+                                <div class="bg-blue-100 text-blue-800 rounded-lg p-3">Smart Label <br/>(Real-time Data)</div>
+                                <div class="font-bold text-gray-400 text-2xl transform rotate-90 sm:rotate-0">&rarr;</div>
+                            </div>
+                            <div class="flex items-center flex-col sm:flex-row gap-2">
+                                <div class="bg-green-100 text-green-800 rounded-lg p-3">ML Algorithm <br/>(Quality Analysis)</div>
+                                <div class="font-bold text-gray-400 text-2xl transform rotate-90 sm:rotate-0">&rarr;</div>
+                            </div>
+                             <div class="bg-purple-100 text-purple-800 rounded-lg p-3">Dynamic Pricing <br/>(Reduced Waste)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <h4 class="text-xl font-semibold text-gray-800">Blockchain in Logistics</h4>
+                    <p class="mt-2 text-gray-600">Researched and proposed a framework leveraging blockchain and Industry 4.0 to improve transparency, efficiency, and sustainability in the circular economy's logistics.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <h4 class="text-xl font-semibold text-gray-800">Sustainable Supplier Selection</h4>
+                    <p class="mt-2 text-gray-600">Developed a model using multi-criteria decision-making (MCDM) techniques for selecting sustainable suppliers, balancing cost, quality, and environmental impact.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <h4 class="text-xl font-semibold text-gray-800">Autonomous Beach Cleaning Robot</h4>
+                    <p class="mt-2 text-gray-600">Award-winning capstone project for the design and fabrication of an autonomous robot for beach cleaning, recognized at the Dtec Annual Innovation ceremony.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <h4 class="text-xl font-semibold text-gray-800">Blockchain in Scheduling</h4>
+                    <p class="mt-2 text-gray-600">Conducted a comprehensive review of current trends and future directions for integrating blockchain technology into scheduling systems to enhance efficiency.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="py-20">
+            <h3 class="text-3xl font-bold text-center mb-12">Education & Certifications</h3>
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h4 class="text-xl font-semibold text-gray-800">MSc. in Engineering Systems Management</h4>
+                    <p class="text-amber-600 font-medium">American University of Sharjah (AUS)</p>
+                    <p class="mt-2 text-gray-600">GPA: 3.95/4.0</p>
+                    <p class="text-sm text-gray-500">Relevant Courses: Logistics, Procurement, Project Management.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h4 class="text-xl font-semibold text-gray-800">BSc. in Industrial Engineering</h4>
+                    <p class="text-amber-600 font-medium">Rochester Institute of Technology (RIT)</p>
+                    <p class="mt-2 text-gray-600">GPA: 3.95/4.0</p>
+                    <p class="text-sm text-gray-500">Relevant Courses: Supply Chain Management, Facilities Planning.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-xl shadow-lg md:col-span-2">
+                    <h4 class="text-xl font-semibold text-gray-800 text-center">Certifications & Awards</h4>
+                    <ul class="mt-4 flex flex-wrap justify-center gap-x-6 gap-y-2 text-center">
+                        <li class="font-medium text-gray-700">Project Management Professional (PMP)</li>
+                        <li class="font-medium text-gray-700">CEN Graduate Academic Excellence Award</li>
+                        <li class="font-medium text-gray-700">Winner of PMO & IISE Regional Competition</li>
+                        <li class="font-medium text-gray-700">Professional Consulting Bootcamp</li>
+                        <li class="font-medium text-gray-700">X Culture International Collaboration Project</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="languages" class="py-20">
+            <h3 class="text-3xl font-bold text-center mb-12">Languages</h3>
+            <div class="flex justify-center items-center gap-8 max-w-md mx-auto">
+                <div class="text-center">
+                    <h4 class="text-xl font-semibold text-gray-800">Arabic</h4>
+                    <p class="text-amber-600 font-medium">Proficient</p>
+                </div>
+                <div class="w-px h-12 bg-gray-300"></div>
+                <div class="text-center">
+                    <h4 class="text-xl font-semibold text-gray-800">English</h4>
+                    <p class="text-amber-600 font-medium">Advanced</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 Haya Alastal. This interactive CV was created to showcase my qualifications for opportunities at DHL.</p>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        function toggleDetails(id) {
+            const element = document.getElementById(id);
+            element.classList.toggle('hidden');
+        }
+
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+       
+        const skillsData = {
+            labels: [
+                'Supply Chain Optimization', 'Logistics Management', 'Warehouse Operations', 'Demand & Inventory Planning', 'Procurement Strategy', 'Sustainable Supply Chains',
+                'Cross-Functional Leadership', 'Jira Service Management', 'Stakeholder Communication', 'Risk Analysis & Mitigation', 'End-to-End Project Delivery', 'Agile & Scrum Methodologies',
+                'Data Analysis & Visualization', 'SAP & ERP Systems', 'Process Automation', 'Power BI & MATLAB', 'Python, AI, Blockchain', 'Microsoft Office Suite'
+            ],
+            datasets: [{
+                label: 'Proficiency',
+                data: [90, 95, 85, 88, 80, 92, 95, 90, 92, 85, 98, 88, 95, 85, 80, 88, 90, 98],
+                backgroundColor: 'rgba(212, 160, 23, 0.6)',
+                borderColor: 'rgba(212, 160, 23, 1)',
+                borderWidth: 1,
+                category: ['logistics', 'logistics', 'logistics', 'logistics', 'logistics', 'logistics', 'pm', 'pm', 'pm', 'pm', 'pm', 'pm', 'tech', 'tech', 'tech', 'tech', 'tech', 'tech']
+            }]
+        };
+
+        let skillsChart;
+        function createChart(data) {
+            const ctx = document.getElementById('skillsChart').getContext('2d');
+            if (skillsChart) {
+                skillsChart.destroy();
+            }
+            skillsChart = new Chart(ctx, {
+                type: 'bar',
+                data: data,
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return ` Proficiency: ${context.raw}%`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%'
+                                }
+                            }
+                        },
+                        y: {
+                           ticks: {
+                                autoSkip: false,
+                           }
+                        }
+                    }
+                }
+            });
+        }
+       
+        const filterButtons = document.querySelectorAll('.skill-filter-btn');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('active', 'bg-amber-500', 'text-white');
+                    btn.classList.add('bg-gray-200', 'text-gray-800');
+                });
+                button.classList.add('active', 'bg-amber-500', 'text-white');
+                button.classList.remove('bg-gray-200', 'text-gray-800');
+
+                const category = button.dataset.category;
+                if (category === 'all') {
+                    createChart(skillsData);
+                    return;
+                }
+
+                const filteredLabels = [];
+                const filteredData = [];
+                const filteredCategories = [];
+
+                skillsData.datasets[0].category.forEach((cat, index) => {
+                    if (cat === category) {
+                        filteredLabels.push(skillsData.labels[index]);
+                        filteredData.push(skillsData.datasets[0].data[index]);
+                        filteredCategories.push(cat);
+                    }
+                });
+               
+                const filteredChartData = {
+                    labels: filteredLabels,
+                    datasets: [{
+                        ...skillsData.datasets[0],
+                        data: filteredData,
+                        category: filteredCategories
+                    }]
+                };
+                createChart(filteredChartData);
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            createChart(skillsData);
+            document.querySelector('.nav-link[href="#summary"]').classList.add('active');
+        });
+
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haya Alastal | Associate Project Manager & Supply Chain Specialist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals with DHL-inspired Accent -->
+    <!-- Application Structure Plan: A single-page, thematic portfolio designed for recruiter engagement. The structure flows from a high-level summary (Hero) to an interactive exploration of capabilities (Skills Dashboard), then showcases career progression (Experience Timeline), and finally highlights the most relevant evidence of suitability (Project Spotlight). This non-linear, scannable structure, supported by a sticky navigation, allows users to quickly access the most relevant information, prioritizing impact and usability over a traditional chronological format. -->
+    <!-- Visualization & Content Choices:
+        - Hero: Goal=Inform, Method=Text, Interaction=None. Justification: Provides an immediate, concise professional identity.
+        - Core Competencies: Goal=Organize/Compare, Viz=Bar Chart, Interaction=Filtering. Justification: Visually quantifies skills, making them easily comparable and digestible. Library: Chart.js (Canvas).
+        - Experience: Goal=Show Change, Method=Interactive Timeline, Interaction=Click-to-expand. Justification: Presents career history in a clean, engaging format that reduces initial clutter. Method: HTML/CSS/JS.
+        - Projects: Goal=Inform/Wow, Method=Cards & HTML/CSS Diagram, Interaction=Highlighting. Justification: The diagram makes the complex thesis instantly understandable and directly connects Haya's work to DHL's innovation focus.
+        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F7F4;
+            color: #333333;
+        }
+        .nav-link {
+            transition: color 0.3s ease, border-bottom-color 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #D4A017;
+            border-bottom-color: #D4A017;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -31px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #D4A017;
+            border: 2px solid #F8F7F4;
+            z-index: 10;
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold text-gray-800">HAYA ALASTAL</div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#summary" class="nav-link font-medium pb-1">Summary</a>
+                <a href="#skills" class="nav-link font-medium pb-1">Skills</a>
+                <a href="#experience" class="nav-link font-medium pb-1">Experience</a>
+                <a href="#projects" class="nav-link font-medium pb-1">Projects</a>
+                <a href="#education" class="nav-link font-medium pb-1">Education</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-gray-800 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 flex-col space-y-2">
+            <a href="#summary" class="block py-2 text-center nav-link">Summary</a>
+            <a href="#skills" class="block py-2 text-center nav-link">Skills</a>
+            <a href="#experience" class="block py-2 text-center nav-link">Experience</a>
+            <a href="#projects" class="block py-2 text-center nav-link">Projects</a>
+            <a href="#education" class="block py-2 text-center nav-link">Education</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <section id="summary" class="min-h-[60vh] flex flex-col justify-center items-center text-center">
+            <h1 class="text-4xl md:text-6xl font-bold text-gray-800 leading-tight">Haya B. Alastal</h1>
+            <h2 class="mt-4 text-2xl md:text-3xl font-medium text-amber-600">Associate Project Manager &amp; Supply Chain and Logistics Specialist</h2>
+            <p class="mt-8 max-w-3xl text-lg text-gray-600">
+                A results-driven professional with a Master's degree in Engineering Systems Management, specializing in optimizing supply chains through data analysis, process improvement, and innovative technologies. Proven ability to lead complex, cross-border projects from concept to completion, delivering efficiency and value in global logistics environments.
+            </p>
+            <div class="mt-8 flex flex-wrap justify-center gap-4 text-sm">
+                <span class="bg-gray-200 text-gray-800 px-4 py-2 rounded-full">+971 52 537 1710</span>
+                <span class="bg-gray-200 text-gray-800 px-4 py-2 rounded-full">Haya.b.alastal@gmail.com</span>
+                <a href="https://www.linkedin.com/in/haya-alastal-6079651a0/" target="_blank" class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-colors">LinkedIn Profile</a>
+            </div>
+        </section>
+
+        <section id="skills" class="py-20">
+            <h3 class="text-3xl font-bold text-center mb-4">Core Competencies</h3>
+            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">
+                This section provides a dynamic overview of my key skill areas. The chart below visualizes the breadth of my expertise across supply chain logistics, project management, and technical domains. Use the buttons to filter the chart and explore the specific skills that define my professional capabilities.
+            </p>
+            <div class="flex justify-center flex-wrap gap-2 mb-8">
+                <button class="skill-filter-btn active bg-amber-500 text-white px-4 py-2 rounded-full" data-category="all">All Skills</button>
+                <button class="skill-filter-btn bg-gray-200 text-gray-800 px-4 py-2 rounded-full" data-category="logistics">Supply Chain & Logistics</button>
+                <button class="skill-filter-btn bg-gray-200 text-gray-800 px-4 py-2 rounded-full" data-category="pm">Project Management</button>
+                <button class="skill-filter-btn bg-gray-200 text-gray-800 px-4 py-2 rounded-full" data-category="tech">Technical & Analytical</button>
+            </div>
+            <div class="bg-white p-4 sm:p-8 rounded-xl shadow-lg">
+                <div class="chart-container relative h-96 max-h-[400px] w-full max-w-4xl mx-auto">
+                    <canvas id="skillsChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="py-20">
+            <h3 class="text-3xl font-bold text-center mb-4">Professional Experience</h3>
+            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-16">
+                My career path demonstrates a consistent focus on improving systems, managing complex projects, and driving operational excellence. The interactive timeline below outlines my key roles and responsibilities. Click on each position to expand and view my specific accomplishments and contributions.
+            </p>
+            <div class="relative max-w-2xl mx-auto border-l-2 border-gray-200 pl-8">
+                <div class="timeline-item mb-12">
+                    <div class="cursor-pointer" onclick="toggleDetails('exp1')">
+                        <h4 class="text-xl font-semibold text-gray-800">Associate Project Manager, Platform Delivery</h4>
+                        <p class="text-amber-600 font-medium">Nexus Solutions | Dubai, UAE</p>
+                        <p class="text-sm text-gray-500">April 2024 – Present</p>
+                    </div>
+                    <div id="exp1" class="hidden mt-4 pl-4 border-l-2 border-amber-200">
+                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li>Structured the company’s first Jira Service Management system to streamline support, track SLAs, and manage change requests.</li>
+                            <li>Transformed project delivery with a standardized end-to-end approach, complete with tailored documentation and templates.</li>
+                            <li>Drove the platform delivery lifecycle for 6 international clients (each valued at €25K), from scoping to post-go-live support.</li>
+                            <li>Played a consultative role in strategic decisions, supporting leadership in roadmaps, technical feasibility, and scalability.</li>
+                            <li>Coordinated cross-border teams (UAE, UK, Turkey, Malta, Germany, Bulgaria) via daily standups to manage blockers and align on timelines.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item mb-12">
+                    <div class="cursor-pointer" onclick="toggleDetails('exp_new')">
+                        <h4 class="text-xl font-semibold text-gray-800">Graduate Teacher and Research Assistant</h4>
+                        <p class="text-amber-600 font-medium">American University of Sharjah (AUS) | Sharjah, UAE</p>
+                        <p class="text-sm text-gray-500">January 2023 – January 2024</p>
+                    </div>
+                    <div id="exp_new" class="hidden mt-4 pl-4 border-l-2 border-amber-200">
+                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li>Prepared and organized industrial engineering bootcamps, open days, and competitions in collaboration with department heads and faculty.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item mb-12">
+                    <div class="cursor-pointer" onclick="toggleDetails('exp_new_2')">
+                        <h4 class="text-xl font-semibold text-gray-800">Junior Researcher in Quality Control</h4>
+                        <p class="text-amber-600 font-medium">Rochester Institute of Technology (RIT) | Dubai, UAE</p>
+                        <p class="text-sm text-gray-500">May 2022 – January 2024</p>
+                    </div>
+                    <div id="exp_new_2" class="hidden mt-4 pl-4 border-l-2 border-amber-200">
+                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li>Created a conceptual framework to be adopted by new academies for optimal quality achievement.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item mb-12">
+                     <div class="cursor-pointer" onclick="toggleDetails('exp3')">
+                        <h4 class="text-xl font-semibold text-gray-800">Consulting Project Manager</h4>
+                        <p class="text-amber-600 font-medium">Rochester Institute of Technology (RIT) | Dubai, UAE</p>
+                        <p class="text-sm text-gray-500">May 2020 – September 2021</p>
+                    </div>
+                    <div id="exp3" class="hidden mt-4 pl-4 border-l-2 border-amber-200">
+                         <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li>Led cross-functional teams to solve complex business challenges for clients.</li>
+                            <li>Conducted market research and risk analysis for a major healthcare client’s supply chain continuity.</li>
+                            <li>Fostered strong client partnerships through effective communication and problem-solving.</li>
+                            <li>Collaborated with key technology partners including Dubai Future Labs, Fractal Systems, and CMC Hospital.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                     <div class="cursor-pointer" onclick="toggleDetails('exp2')">
+                        <h4 class="text-xl font-semibold text-gray-800">Sustainability and Quality Control Engineer</h4>
+                        <p class="text-amber-600 font-medium">Ajman Free Zone (AFZ) | Ajman, UAE</p>
+                        <p class="text-sm text-gray-500">September 2020 – January 2021</p>
+                    </div>
+                    <div id="exp2" class="hidden mt-4 pl-4 border-l-2 border-amber-200">
+                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li>Optimized warehouse and material management with sustainable supply chain practices.</li>
+                            <li>Introduced new systems for energy and water rationalization in AFZ facilities.</li>
+                            <li>Evaluated and managed contracts for future sustainability projects in logistics infrastructure.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+       
+        <section id="projects" class="py-20">
+            <h3 class="text-3xl font-bold text-center mb-4">Academic & Research Projects</h3>
+            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">
+                My academic research bridges theory and practice, focusing on applying emerging technologies to solve real-world logistics challenges. This section highlights key projects, including my Master's thesis which was inspired by DHL's own innovation research and directly addresses critical issues in the cold chain.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover col-span-1 md:col-span-2 lg:col-span-3">
+                    <h4 class="text-xl font-semibold text-amber-700">Master's Thesis: Quality & Pricing Model for Perishables</h4>
+                    <p class="mt-2 text-gray-600">This research developed a machine learning algorithm using smart labels—a technology identified via the **DHL Trend Radar**—to dynamically link the quality degradation of perishable foods to pricing. The model is designed to reduce waste, ensure quality, and enhance customer satisfaction in the cold chain.</p>
+                    <div class="mt-4 bg-gray-50 p-4 rounded-lg">
+                        <h5 class="font-semibold text-center mb-4 text-gray-700">Conceptual Flow</h5>
+                        <div class="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0 sm:space-x-4 text-center text-sm">
+                            <div class="flex items-center flex-col sm:flex-row gap-2">
+                                <div class="bg-blue-100 text-blue-800 rounded-lg p-3">Smart Label <br/>(Real-time Data)</div>
+                                <div class="font-bold text-gray-400 text-2xl transform rotate-90 sm:rotate-0">&rarr;</div>
+                            </div>
+                            <div class="flex items-center flex-col sm:flex-row gap-2">
+                                <div class="bg-green-100 text-green-800 rounded-lg p-3">ML Algorithm <br/>(Quality Analysis)</div>
+                                <div class="font-bold text-gray-400 text-2xl transform rotate-90 sm:rotate-0">&rarr;</div>
+                            </div>
+                             <div class="bg-purple-100 text-purple-800 rounded-lg p-3">Dynamic Pricing <br/>(Reduced Waste)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <h4 class="text-xl font-semibold text-gray-800">Blockchain in Logistics</h4>
+                    <p class="mt-2 text-gray-600">Researched and proposed a framework leveraging blockchain and Industry 4.0 to improve transparency, efficiency, and sustainability in the circular economy's logistics.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <h4 class="text-xl font-semibold text-gray-800">Sustainable Supplier Selection</h4>
+                    <p class="mt-2 text-gray-600">Developed a model using multi-criteria decision-making (MCDM) techniques for selecting sustainable suppliers, balancing cost, quality, and environmental impact.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <h4 class="text-xl font-semibold text-gray-800">Autonomous Beach Cleaning Robot</h4>
+                    <p class="mt-2 text-gray-600">Award-winning capstone project for the design and fabrication of an autonomous robot for beach cleaning, recognized at the Dtec Annual Innovation ceremony.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <h4 class="text-xl font-semibold text-gray-800">Blockchain in Scheduling</h4>
+                    <p class="mt-2 text-gray-600">Conducted a comprehensive review of current trends and future directions for integrating blockchain technology into scheduling systems to enhance efficiency.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="py-20">
+            <h3 class="text-3xl font-bold text-center mb-12">Education & Certifications</h3>
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h4 class="text-xl font-semibold text-gray-800">MSc. in Engineering Systems Management</h4>
+                    <p class="text-amber-600 font-medium">American University of Sharjah (AUS)</p>
+                    <p class="mt-2 text-gray-600">GPA: 3.95/4.0</p>
+                    <p class="text-sm text-gray-500">Relevant Courses: Logistics, Procurement, Project Management.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h4 class="text-xl font-semibold text-gray-800">BSc. in Industrial Engineering</h4>
+                    <p class="text-amber-600 font-medium">Rochester Institute of Technology (RIT)</p>
+                    <p class="mt-2 text-gray-600">GPA: 3.95/4.0</p>
+                    <p class="text-sm text-gray-500">Relevant Courses: Supply Chain Management, Facilities Planning.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-xl shadow-lg md:col-span-2">
+                    <h4 class="text-xl font-semibold text-gray-800 text-center">Certifications & Awards</h4>
+                    <ul class="mt-4 flex flex-wrap justify-center gap-x-6 gap-y-2 text-center">
+                        <li class="font-medium text-gray-700">Project Management Professional (PMP)</li>
+                        <li class="font-medium text-gray-700">CEN Graduate Academic Excellence Award</li>
+                        <li class="font-medium text-gray-700">Winner of PMO & IISE Regional Competition</li>
+                        <li class="font-medium text-gray-700">Professional Consulting Bootcamp</li>
+                        <li class="font-medium text-gray-700">X Culture International Collaboration Project</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="languages" class="py-20">
+            <h3 class="text-3xl font-bold text-center mb-12">Languages</h3>
+            <div class="flex justify-center items-center gap-8 max-w-md mx-auto">
+                <div class="text-center">
+                    <h4 class="text-xl font-semibold text-gray-800">Arabic</h4>
+                    <p class="text-amber-600 font-medium">Proficient</p>
+                </div>
+                <div class="w-px h-12 bg-gray-300"></div>
+                <div class="text-center">
+                    <h4 class="text-xl font-semibold text-gray-800">English</h4>
+                    <p class="text-amber-600 font-medium">Advanced</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 Haya Alastal. This interactive CV was created to showcase my qualifications for opportunities at DHL.</p>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        function toggleDetails(id) {
+            const element = document.getElementById(id);
+            element.classList.toggle('hidden');
+        }
+
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+       
+        const skillsData = {
+            labels: [
+                'Supply Chain Optimization', 'Logistics Management', 'Warehouse Operations', 'Demand & Inventory Planning', 'Procurement Strategy', 'Sustainable Supply Chains',
+                'Cross-Functional Leadership', 'Jira Service Management', 'Stakeholder Communication', 'Risk Analysis & Mitigation', 'End-to-End Project Delivery', 'Agile & Scrum Methodologies',
+                'Data Analysis & Visualization', 'SAP & ERP Systems', 'Process Automation', 'Power BI & MATLAB', 'Python, AI, Blockchain', 'Microsoft Office Suite'
+            ],
+            datasets: [{
+                label: 'Proficiency',
+                data: [90, 95, 85, 88, 80, 92, 95, 90, 92, 85, 98, 88, 95, 85, 80, 88, 90, 98],
+                backgroundColor: 'rgba(212, 160, 23, 0.6)',
+                borderColor: 'rgba(212, 160, 23, 1)',
+                borderWidth: 1,
+                category: ['logistics', 'logistics', 'logistics', 'logistics', 'logistics', 'logistics', 'pm', 'pm', 'pm', 'pm', 'pm', 'pm', 'tech', 'tech', 'tech', 'tech', 'tech', 'tech']
+            }]
+        };
+
+        let skillsChart;
+        function createChart(data) {
+            const ctx = document.getElementById('skillsChart').getContext('2d');
+            if (skillsChart) {
+                skillsChart.destroy();
+            }
+            skillsChart = new Chart(ctx, {
+                type: 'bar',
+                data: data,
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return ` Proficiency: ${context.raw}%`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%'
+                                }
+                            }
+                        },
+                        y: {
+                           ticks: {
+                                autoSkip: false,
+                           }
+                        }
+                    }
+                }
+            });
+        }
+       
+        const filterButtons = document.querySelectorAll('.skill-filter-btn');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('active', 'bg-amber-500', 'text-white');
+                    btn.classList.add('bg-gray-200', 'text-gray-800');
+                });
+                button.classList.add('active', 'bg-amber-500', 'text-white');
+                button.classList.remove('bg-gray-200', 'text-gray-800');
+
+                const category = button.dataset.category;
+                if (category === 'all') {
+                    createChart(skillsData);
+                    return;
+                }
+
+                const filteredLabels = [];
+                const filteredData = [];
+                const filteredCategories = [];
+
+                skillsData.datasets[0].category.forEach((cat, index) => {
+                    if (cat === category) {
+                        filteredLabels.push(skillsData.labels[index]);
+                        filteredData.push(skillsData.datasets[0].data[index]);
+                        filteredCategories.push(cat);
+                    }
+                });
+               
+                const filteredChartData = {
+                    labels: filteredLabels,
+                    datasets: [{
+                        ...skillsData.datasets[0],
+                        data: filteredData,
+                        category: filteredCategories
+                    }]
+                };
+                createChart(filteredChartData);
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            createChart(skillsData);
+            document.querySelector('.nav-link[href="#summary"]').classList.add('active');
+        });
+
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haya Alastal | Associate Project Manager & Supply Chain Specialist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals with DHL-inspired Accent -->
+    <!-- Application Structure Plan: A single-page, thematic portfolio designed for recruiter engagement. The structure flows from a high-level summary (Hero) to an interactive exploration of capabilities (Skills Dashboard), then showcases career progression (Experience Timeline), and finally highlights the most relevant evidence of suitability (Project Spotlight). This non-linear, scannable structure, supported by a sticky navigation, allows users to quickly access the most relevant information, prioritizing impact and usability over a traditional chronological format. -->
+    <!-- Visualization & Content Choices:
+        - Hero: Goal=Inform, Method=Text, Interaction=None. Justification: Provides an immediate, concise professional identity.
+        - Core Competencies: Goal=Organize/Compare, Viz=Bar Chart, Interaction=Filtering. Justification: Visually quantifies skills, making them easily comparable and digestible. Library: Chart.js (Canvas).
+        - Experience: Goal=Show Change, Method=Interactive Timeline, Interaction=Click-to-expand. Justification: Presents career history in a clean, engaging format that reduces initial clutter. Method: HTML/CSS/JS.
+        - Projects: Goal=Inform/Wow, Method=Cards & HTML/CSS Diagram, Interaction=Highlighting. Justification: The diagram makes the complex thesis instantly understandable and directly connects Haya's work to DHL's innovation focus.
+        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F7F4;
+            color: #333333;
+        }
+        .nav-link {
+            transition: color 0.3s ease, border-bottom-color 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #D4A017;
+            border-bottom-color: #D4A017;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -31px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #D4A017;
+            border: 2px solid #F8F7F4;
+            z-index: 10;
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold text-gray-800">HAYA ALASTAL</div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#summary" class="nav-link font-medium pb-1">Summary</a>
+                <a href="#skills" class="nav-link font-medium pb-1">Skills</a>
+                <a href="#experience" class="nav-link font-medium pb-1">Experience</a>
+                <a href="#projects" class="nav-link font-medium pb-1">Projects</a>
+                <a href="#education" class="nav-link font-medium pb-1">Education</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-gray-800 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 flex-col space-y-2">
+            <a href="#summary" class="block py-2 text-center nav-link">Summary</a>
+            <a href="#skills" class="block py-2 text-center nav-link">Skills</a>
+            <a href="#experience" class="block py-2 text-center nav-link">Experience</a>
+            <a href="#projects" class="block py-2 text-center nav-link">Projects</a>
+            <a href="#education" class="block py-2 text-center nav-link">Education</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <section id="summary" class="min-h-[60vh] flex flex-col justify-center items-center text-center">
+            <h1 class="text-4xl md:text-6xl font-bold text-gray-800 leading-tight">Haya B. Alastal</h1>
+            <h2 class="mt-4 text-2xl md:text-3xl font-medium text-amber-600">Associate Project Manager &amp; Supply Chain and Logistics Specialist</h2>
+            <p class="mt-8 max-w-3xl text-lg text-gray-600">
+                A results-driven professional with a Master's degree in Engineering Systems Management, specializing in optimizing supply chains through data analysis, process improvement, and innovative technologies. Proven ability to lead complex, cross-border projects from concept to completion, delivering efficiency and value in global logistics environments.
+            </p>
+            <div class="mt-8 flex flex-wrap justify-center gap-4 text-sm">
+                <span class="bg-gray-200 text-gray-800 px-4 py-2 rounded-full">+971 52 537 1710</span>
+                <span class="bg-gray-200 text-gray-800 px-4 py-2 rounded-full">Haya.b.alastal@gmail.com</span>
+                <a href="https://www.linkedin.com/in/haya-alastal-6079651a0/" target="_blank" class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-colors">LinkedIn Profile</a>
+            </div>
+        </section>
+
+        <section id="skills" class="py-20">
+            <h3 class="text-3xl font-bold text-center mb-4">Core Competencies</h3>
+            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">
+                This section provides a dynamic overview of my key skill areas. The chart below visualizes the breadth of my expertise across supply chain logistics, project management, and technical domains. Use the buttons to filter the chart and explore the specific skills that define my professional capabilities.
+            </p>
+            <div class="flex justify-center flex-wrap gap-2 mb-8">
+                <button class="skill-filter-btn active bg-amber-500 text-white px-4 py-2 rounded-full" data-category="all">All Skills</button>
+                <button class="skill-filter-btn bg-gray-200 text-gray-800 px-4 py-2 rounded-full" data-category="logistics">Supply Chain & Logistics</button>
+                <button class="skill-filter-btn bg-gray-200 text-gray-800 px-4 py-2 rounded-full" data-category="pm">Project Management</button>
+                <button class="skill-filter-btn bg-gray-200 text-gray-800 px-4 py-2 rounded-full" data-category="tech">Technical & Analytical</button>
+            </div>
+            <div class="bg-white p-4 sm:p-8 rounded-xl shadow-lg">
+                <div class="chart-container relative h-96 max-h-[400px] w-full max-w-4xl mx-auto">
+                    <canvas id="skillsChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="py-20">
+            <h3 class="text-3xl font-bold text-center mb-4">Professional Experience</h3>
+            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-16">
+                My career path demonstrates a consistent focus on improving systems, managing complex projects, and driving operational excellence. The interactive timeline below outlines my key roles and responsibilities. Click on each position to expand and view my specific accomplishments and contributions.
+            </p>
+            <div class="relative max-w-2xl mx-auto border-l-2 border-gray-200 pl-8">
+                <div class="timeline-item mb-12">
+                    <div class="cursor-pointer" onclick="toggleDetails('exp1')">
+                        <h4 class="text-xl font-semibold text-gray-800">Associate Project Manager, Platform Delivery</h4>
+                        <p class="text-amber-600 font-medium">Nexus Solutions | Dubai, UAE</p>
+                        <p class="text-sm text-gray-500">April 2024 – Present</p>
+                    </div>
+                    <div id="exp1" class="hidden mt-4 pl-4 border-l-2 border-amber-200">
+                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li>Structured the company’s first Jira Service Management system to streamline support, track SLAs, and manage change requests.</li>
+                            <li>Transformed project delivery with a standardized end-to-end approach, complete with tailored documentation and templates.</li>
+                            <li>Drove the platform delivery lifecycle for 6 international clients (each valued at €25K), from scoping to post-go-live support.</li>
+                            <li>Played a consultative role in strategic decisions, supporting leadership in roadmaps, technical feasibility, and scalability.</li>
+                            <li>Coordinated cross-border teams (UAE, UK, Turkey, Malta, Germany, Bulgaria) via daily standups to manage blockers and align on timelines.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item mb-12">
+                    <div class="cursor-pointer" onclick="toggleDetails('exp_new')">
+                        <h4 class="text-xl font-semibold text-gray-800">Graduate Teacher and Research Assistant</h4>
+                        <p class="text-amber-600 font-medium">American University of Sharjah (AUS) | Sharjah, UAE</p>
+                        <p class="text-sm text-gray-500">January 2023 – January 2024</p>
+                    </div>
+                    <div id="exp_new" class="hidden mt-4 pl-4 border-l-2 border-amber-200">
+                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li>Prepared and organized industrial engineering bootcamps, open days, and competitions in collaboration with department heads and faculty.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item mb-12">
+                    <div class="cursor-pointer" onclick="toggleDetails('exp_new_2')">
+                        <h4 class="text-xl font-semibold text-gray-800">Junior Researcher in Quality Control</h4>
+                        <p class="text-amber-600 font-medium">Rochester Institute of Technology (RIT) | Dubai, UAE</p>
+                        <p class="text-sm text-gray-500">May 2022 – January 2024</p>
+                    </div>
+                    <div id="exp_new_2" class="hidden mt-4 pl-4 border-l-2 border-amber-200">
+                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li>Created a conceptual framework to be adopted by new academies for optimal quality achievement.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item mb-12">
+                     <div class="cursor-pointer" onclick="toggleDetails('exp3')">
+                        <h4 class="text-xl font-semibold text-gray-800">Consulting Project Manager</h4>
+                        <p class="text-amber-600 font-medium">Rochester Institute of Technology (RIT) | Dubai, UAE</p>
+                        <p class="text-sm text-gray-500">May 2020 – September 2021</p>
+                    </div>
+                    <div id="exp3" class="hidden mt-4 pl-4 border-l-2 border-amber-200">
+                         <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li>Led cross-functional teams to solve complex business challenges for clients.</li>
+                            <li>Conducted market research and risk analysis for a major healthcare client’s supply chain continuity.</li>
+                            <li>Fostered strong client partnerships through effective communication and problem-solving.</li>
+                            <li>Collaborated with key technology partners including Dubai Future Labs, Fractal Systems, and CMC Hospital.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                     <div class="cursor-pointer" onclick="toggleDetails('exp2')">
+                        <h4 class="text-xl font-semibold text-gray-800">Sustainability and Quality Control Engineer</h4>
+                        <p class="text-amber-600 font-medium">Ajman Free Zone (AFZ) | Ajman, UAE</p>
+                        <p class="text-sm text-gray-500">September 2020 – January 2021</p>
+                    </div>
+                    <div id="exp2" class="hidden mt-4 pl-4 border-l-2 border-amber-200">
+                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li>Optimized warehouse and material management with sustainable supply chain practices.</li>
+                            <li>Introduced new systems for energy and water rationalization in AFZ facilities.</li>
+                            <li>Evaluated and managed contracts for future sustainability projects in logistics infrastructure.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+       
+        <section id="projects" class="py-20">
+            <h3 class="text-3xl font-bold text-center mb-4">Academic & Research Projects</h3>
+            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">
+                My academic research bridges theory and practice, focusing on applying emerging technologies to solve real-world logistics challenges. This section highlights key projects, including my Master's thesis which was inspired by DHL's own innovation research and directly addresses critical issues in the cold chain.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover col-span-1 md:col-span-2 lg:col-span-3">
+                    <h4 class="text-xl font-semibold text-amber-700">Master's Thesis: Quality & Pricing Model for Perishables</h4>
+                    <p class="mt-2 text-gray-600">This research developed a machine learning algorithm using smart labels—a technology identified via the **DHL Trend Radar**—to dynamically link the quality degradation of perishable foods to pricing. The model is designed to reduce waste, ensure quality, and enhance customer satisfaction in the cold chain.</p>
+                    <div class="mt-4 bg-gray-50 p-4 rounded-lg">
+                        <h5 class="font-semibold text-center mb-4 text-gray-700">Conceptual Flow</h5>
+                        <div class="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0 sm:space-x-4 text-center text-sm">
+                            <div class="flex items-center flex-col sm:flex-row gap-2">
+                                <div class="bg-blue-100 text-blue-800 rounded-lg p-3">Smart Label <br/>(Real-time Data)</div>
+                                <div class="font-bold text-gray-400 text-2xl transform rotate-90 sm:rotate-0">&rarr;</div>
+                            </div>
+                            <div class="flex items-center flex-col sm:flex-row gap-2">
+                                <div class="bg-green-100 text-green-800 rounded-lg p-3">ML Algorithm <br/>(Quality Analysis)</div>
+                                <div class="font-bold text-gray-400 text-2xl transform rotate-90 sm:rotate-0">&rarr;</div>
+                            </div>
+                             <div class="bg-purple-100 text-purple-800 rounded-lg p-3">Dynamic Pricing <br/>(Reduced Waste)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <h4 class="text-xl font-semibold text-gray-800">Blockchain in Logistics</h4>
+                    <p class="mt-2 text-gray-600">Researched and proposed a framework leveraging blockchain and Industry 4.0 to improve transparency, efficiency, and sustainability in the circular economy's logistics.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <h4 class="text-xl font-semibold text-gray-800">Sustainable Supplier Selection</h4>
+                    <p class="mt-2 text-gray-600">Developed a model using multi-criteria decision-making (MCDM) techniques for selecting sustainable suppliers, balancing cost, quality, and environmental impact.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <h4 class="text-xl font-semibold text-gray-800">Autonomous Beach Cleaning Robot</h4>
+                    <p class="mt-2 text-gray-600">Award-winning capstone project for the design and fabrication of an autonomous robot for beach cleaning, recognized at the Dtec Annual Innovation ceremony.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <h4 class="text-xl font-semibold text-gray-800">Blockchain in Scheduling</h4>
+                    <p class="mt-2 text-gray-600">Conducted a comprehensive review of current trends and future directions for integrating blockchain technology into scheduling systems to enhance efficiency.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="py-20">
+            <h3 class="text-3xl font-bold text-center mb-12">Education & Certifications</h3>
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h4 class="text-xl font-semibold text-gray-800">MSc. in Engineering Systems Management</h4>
+                    <p class="text-amber-600 font-medium">American University of Sharjah (AUS)</p>
+                    <p class="mt-2 text-gray-600">GPA: 3.95/4.0</p>
+                    <p class="text-sm text-gray-500">Relevant Courses: Logistics, Procurement, Project Management.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h4 class="text-xl font-semibold text-gray-800">BSc. in Industrial Engineering</h4>
+                    <p class="text-amber-600 font-medium">Rochester Institute of Technology (RIT)</p>
+                    <p class="mt-2 text-gray-600">GPA: 3.95/4.0</p>
+                    <p class="text-sm text-gray-500">Relevant Courses: Supply Chain Management, Facilities Planning.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-xl shadow-lg md:col-span-2">
+                    <h4 class="text-xl font-semibold text-gray-800 text-center">Certifications & Awards</h4>
+                    <ul class="mt-4 flex flex-wrap justify-center gap-x-6 gap-y-2 text-center">
+                        <li class="font-medium text-gray-700">Project Management Professional (PMP)</li>
+                        <li class="font-medium text-gray-700">CEN Graduate Academic Excellence Award</li>
+                        <li class="font-medium text-gray-700">Winner of PMO & IISE Regional Competition</li>
+                        <li class="font-medium text-gray-700">Professional Consulting Bootcamp</li>
+                        <li class="font-medium text-gray-700">X Culture International Collaboration Project</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="languages" class="py-20">
+            <h3 class="text-3xl font-bold text-center mb-12">Languages</h3>
+            <div class="flex justify-center items-center gap-8 max-w-md mx-auto">
+                <div class="text-center">
+                    <h4 class="text-xl font-semibold text-gray-800">Arabic</h4>
+                    <p class="text-amber-600 font-medium">Proficient</p>
+                </div>
+                <div class="w-px h-12 bg-gray-300"></div>
+                <div class="text-center">
+                    <h4 class="text-xl font-semibold text-gray-800">English</h4>
+                    <p class="text-amber-600 font-medium">Advanced</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 Haya Alastal. This interactive CV was created to showcase my qualifications for opportunities at DHL.</p>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        function toggleDetails(id) {
+            const element = document.getElementById(id);
+            element.classList.toggle('hidden');
+        }
+
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+       
+        const skillsData = {
+            labels: [
+                'Supply Chain Optimization', 'Logistics Management', 'Warehouse Operations', 'Demand & Inventory Planning', 'Procurement Strategy', 'Sustainable Supply Chains',
+                'Cross-Functional Leadership', 'Jira Service Management', 'Stakeholder Communication', 'Risk Analysis & Mitigation', 'End-to-End Project Delivery', 'Agile & Scrum Methodologies',
+                'Data Analysis & Visualization', 'SAP & ERP Systems', 'Process Automation', 'Power BI & MATLAB', 'Python, AI, Blockchain', 'Microsoft Office Suite'
+            ],
+            datasets: [{
+                label: 'Proficiency',
+                data: [90, 95, 85, 88, 80, 92, 95, 90, 92, 85, 98, 88, 95, 85, 80, 88, 90, 98],
+                backgroundColor: 'rgba(212, 160, 23, 0.6)',
+                borderColor: 'rgba(212, 160, 23, 1)',
+                borderWidth: 1,
+                category: ['logistics', 'logistics', 'logistics', 'logistics', 'logistics', 'logistics', 'pm', 'pm', 'pm', 'pm', 'pm', 'pm', 'tech', 'tech', 'tech', 'tech', 'tech', 'tech']
+            }]
+        };
+
+        let skillsChart;
+        function createChart(data) {
+            const ctx = document.getElementById('skillsChart').getContext('2d');
+            if (skillsChart) {
+                skillsChart.destroy();
+            }
+            skillsChart = new Chart(ctx, {
+                type: 'bar',
+                data: data,
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return ` Proficiency: ${context.raw}%`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%'
+                                }
+                            }
+                        },
+                        y: {
+                           ticks: {
+                                autoSkip: false,
+                           }
+                        }
+                    }
+                }
+            });
+        }
+       
+        const filterButtons = document.querySelectorAll('.skill-filter-btn');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('active', 'bg-amber-500', 'text-white');
+                    btn.classList.add('bg-gray-200', 'text-gray-800');
+                });
+                button.classList.add('active', 'bg-amber-500', 'text-white');
+                button.classList.remove('bg-gray-200', 'text-gray-800');
+
+                const category = button.dataset.category;
+                if (category === 'all') {
+                    createChart(skillsData);
+                    return;
+                }
+
+                const filteredLabels = [];
+                const filteredData = [];
+                const filteredCategories = [];
+
+                skillsData.datasets[0].category.forEach((cat, index) => {
+                    if (cat === category) {
+                        filteredLabels.push(skillsData.labels[index]);
+                        filteredData.push(skillsData.datasets[0].data[index]);
+                        filteredCategories.push(cat);
+                    }
+                });
+               
+                const filteredChartData = {
+                    labels: filteredLabels,
+                    datasets: [{
+                        ...skillsData.datasets[0],
+                        data: filteredData,
+                        category: filteredCategories
+                    }]
+                };
+                createChart(filteredChartData);
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            createChart(skillsData);
+            document.querySelector('.nav-link[href="#summary"]').classList.add('active');
+        });
+
+    </script>
+</body>
+</html>
